@@ -1,64 +1,69 @@
-import Image from "next/image";
+import React from 'react';
+import { Github, Linkedin, Mail, Database, ShieldCheck, Zap, Server, Terminal, ExternalLink } from 'lucide-react';
 
-export default function Home() {
+export default function Portfolio() {
+  const skills = [
+    { category: "Databases", items: ["PostgreSQL", "MySQL", "MongoDB", "Redis"], icon: <Database className="text-blue-500" /> },
+    { category: "Infrastructure", items: ["AWS RDS", "Docker", "Kubernetes", "Linux"], icon: <Server className="text-emerald-500" /> },
+    { category: "Expertise", items: ["Query Tuning", "Replication", "Backups", "Sharding"], icon: <Zap className="text-yellow-500" /> }
+  ];
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <div className="min-h-screen bg-[#050505] text-gray-100 selection:bg-blue-500/30 font-sans">
+      <nav className="flex justify-between items-center px-8 py-10 max-w-6xl mx-auto uppercase tracking-widest text-[10px] opacity-50">
+        <span className="font-bold">DBA_PORTFOLIO_V1.0</span>
+        <div className="flex gap-6">
+          <a href="#about" className="hover:text-blue-400 transition-colors">About</a>
+          <a href="#work" className="hover:text-blue-400 transition-colors">Systems</a>
+          <a href="mailto:your@email.com" className="hover:text-blue-400 transition-colors">Contact</a>
+        </div>
+      </nav>
+
+      <main className="max-w-6xl mx-auto px-8 py-12">
+        <section className="mb-32">
+          <div className="inline-block px-3 py-1 border border-blue-500/30 rounded-full text-blue-400 text-xs mb-6 bg-blue-500/5">
+            3.5+ Years of Data Engineering
+          </div>
+          <h1 className="text-6xl md:text-8xl font-bold mb-8 tracking-tighter leading-[0.9]">
+            Reliable <span className="text-blue-600">Data</span> <br /> Architect.
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <p className="text-xl text-gray-400 max-w-xl leading-relaxed">
+            Specializing in high-availability database administration, performance tuning, and scalable infrastructure.
           </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
+        </section>
+
+        <section id="about" className="grid md:grid-cols-2 gap-16 mb-40 pt-20 border-t border-white/10">
+          <div>
+            <h2 className="text-sm uppercase tracking-[0.3em] text-blue-500 mb-8 font-bold">Background</h2>
+            <p className="text-gray-400 leading-relaxed mb-6 text-lg">
+              I am a Senior Database Administrator with a track record of managing distributed clusters. I focus on ensuring that data remains the most reliable asset of an organization.
+            </p>
+            <div className="flex gap-4">
+               <button className="p-3 rounded-xl bg-white text-black hover:bg-gray-200 transition-all"><Linkedin size={20}/></button>
+               <button className="p-3 rounded-xl bg-gray-900 border border-gray-800 hover:border-gray-600 transition-all"><Github size={20}/></button>
+            </div>
+          </div>
+          <div className="grid grid-cols-1 gap-4">
+            {skills.map((skill) => (
+              <div key={skill.category} className="p-6 bg-[#0a0a0a] rounded-2xl border border-white/5 flex items-start gap-5 hover:border-blue-500/30 transition-colors">
+                <div className="p-3 bg-white/5 rounded-lg">{skill.icon}</div>
+                <div>
+                  <h4 className="font-bold mb-2 text-white">{skill.category}</h4>
+                  <p className="text-sm text-gray-500">{skill.items.join(" • ")}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section id="contact" className="py-20 bg-gradient-to-br from-blue-700 to-blue-900 rounded-[2rem] p-12 text-center text-white relative overflow-hidden">
+          <h2 className="text-4xl font-bold mb-4 relative z-10">Scale your systems today.</h2>
+          <p className="mb-8 opacity-80 relative z-10 font-medium">Currently accepting new consulting projects.</p>
+          <a href="mailto:your@email.com" className="inline-flex items-center gap-2 bg-white text-blue-700 px-10 py-4 rounded-full font-bold hover:shadow-2xl hover:scale-105 transition-all relative z-10">
+            Get in touch
           </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+          <Database className="absolute -bottom-10 -right-10 text-white/10 w-64 h-64 rotate-12" />
+        </section>
       </main>
     </div>
   );

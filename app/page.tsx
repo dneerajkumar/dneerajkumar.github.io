@@ -6,7 +6,8 @@ import {
   Database, Server, Cpu, Cloud, Terminal, 
   Layers, ChevronRight, CheckCircle2, Mail, 
   Phone, Linkedin, Github, Download, Zap, ShieldCheck,
-  Code, Settings, TrendingUp, Link, Star, Globe
+  Code, Settings, TrendingUp, Link, Star, Globe, 
+  ArrowRight, X, AlertTriangle 
 } from 'lucide-react';
 
 // --- ANIMATED SECTION WRAPPER ---

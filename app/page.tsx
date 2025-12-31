@@ -1,128 +1,169 @@
 "use client";
 import React from 'react';
 import { motion, useScroll, useSpring } from 'framer-motion';
-import { Github, Linkedin, Mail, Database, Phone, ExternalLink, MapPin, Calendar, Briefcase } from 'lucide-react';
+import { Github, Linkedin, Mail, Database, Phone, ExternalLink, Server, ShieldCheck, Zap, TrendingUp, ChevronRight } from 'lucide-react';
 
-export default function Portfolio() {
+export default function NeerajPortfolio() {
   const { scrollYProgress } = useScroll();
-  const scaleX = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001
-  });
+  const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
 
   const experiences = [
-    {
-      year: "2023 - Present",
-      role: "Senior Database Administrator",
-      company: "Tech Solutions Corp",
-      desc: "Architecting high-availability PostgreSQL clusters and automating backup orchestration for 50TB+ of data.",
+    { 
+      year: "2023 - Present", 
+      role: "Senior Database Administrator", 
+      company: "Tech Solutions Corp", 
+      color: "border-l-blue-500",
+      desc: "Managing enterprise-scale PostgreSQL clusters with 99.9% uptime."
     },
-    {
-      year: "2021 - 2023",
-      role: "Database Engineer",
-      company: "DataSystems Ltd",
-      desc: "Optimized complex SQL queries reducing server load by 40%. Managed replication and sharding strategies.",
+    { 
+      year: "2021 - 2023", 
+      role: "Database Engineer", 
+      company: "DataSystems Ltd", 
+      color: "border-l-orange-500",
+      desc: "Architected replication strategies and automated backup protocols."
     },
-    {
-      year: "2020 - 2021",
-      role: "Junior DBA",
-      company: "CloudWare Inc",
-      desc: "Focused on monitoring, schema migrations, and user access management in MySQL environments.",
+    { 
+      year: "2020 - 2021", 
+      role: "Associate DBA", 
+      company: "CloudWare Inc", 
+      color: "border-l-emerald-500",
+      desc: "Specialized in performance tuning and query optimization."
     }
   ];
 
   return (
-    <div className="min-h-screen bg-[#020202] text-zinc-100 selection:bg-blue-500/30">
-      {/* Scroll Progress Bar */}
-      <motion.div className="fixed top-0 left-0 right-0 h-1 bg-blue-600 z-50 origin-left" style={{ scaleX }} />
+    <div className="min-h-screen bg-[#f8fafc] text-slate-900 font-sans selection:bg-orange-100 selection:text-orange-900">
+      
+      {/* Top Progress Bar */}
+      <motion.div className="fixed top-0 left-0 right-0 h-1.5 bg-blue-600 z-[60] origin-left" style={{ scaleX }} />
 
-      {/* Nav */}
-      <nav className="max-w-6xl mx-auto px-8 py-10 flex justify-between items-center relative z-10">
-        <span className="text-xl font-black tracking-tighter">DNK<span className="text-blue-600">.</span></span>
-        <div className="flex gap-6 text-[10px] uppercase tracking-[0.3em] font-bold text-zinc-500">
-          <a href="#experience" className="hover:text-white transition-colors">Experience</a>
-          <a href="#contact" className="hover:text-white transition-colors">Contact</a>
+      {/* Modern Navbar */}
+      <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200">
+        <div className="max-w-6xl mx-auto px-8 py-5 flex justify-between items-center">
+          <span className="font-black text-2xl tracking-tighter text-blue-600">DNK<span className="text-orange-500">.</span></span>
+          <div className="flex items-center gap-8">
+            <div className="hidden md:flex gap-8 text-[11px] font-bold uppercase tracking-[0.2em] text-slate-500">
+              <a href="#about" className="hover:text-blue-600 transition-colors">About</a>
+              <a href="#experience" className="hover:text-blue-600 transition-colors">Experience</a>
+              <a href="#contact" className="hover:text-blue-600 transition-colors">Contact</a>
+            </div>
+            <a href="tel:+917077600849" className="bg-blue-600 text-white px-5 py-2 rounded-full text-xs font-bold hover:bg-blue-700 transition-all shadow-lg shadow-blue-200">
+              Let's Talk
+            </a>
+          </div>
         </div>
       </nav>
 
       <main className="max-w-6xl mx-auto px-8">
-        {/* Hero */}
-        <section className="py-20 md:py-32">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-            <h2 className="text-blue-500 font-mono mb-4">Hello, I am</h2>
-            <h1 className="text-6xl md:text-9xl font-bold tracking-tighter leading-none mb-8">
-              D Neeraj <br /><span className="text-zinc-600">Kumar.</span>
+        
+        {/* Hero Section */}
+        <section className="py-24 md:py-32 grid md:grid-cols-2 gap-12 items-center">
+          <motion.div initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }}>
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-100 border border-emerald-200 text-emerald-700 text-xs font-bold mb-6">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+              Available for New Projects
+            </div>
+            <h1 className="text-6xl md:text-8xl font-black tracking-tight text-slate-900 leading-[0.9] mb-8">
+              D Neeraj <br /><span className="text-blue-600">Kumar</span>
             </h1>
-            <p className="text-xl md:text-2xl text-zinc-400 max-w-2xl leading-relaxed mb-10">
-              A **Database Administrator** with 3.5+ years of experience building resilient, high-performance data architectures.
+            <p className="text-xl text-slate-600 leading-relaxed mb-10 max-w-lg">
+              Experienced <span className="text-slate-900 font-semibold underline decoration-orange-400 decoration-4">Database Administrator</span> with 3.5+ years of expertise in optimizing high-traffic data ecosystems.
             </p>
-            <div className="flex flex-wrap gap-6 items-center">
-              <a href="mailto:d.neerajkumar480@gmail.com" className="flex items-center gap-2 text-zinc-300 hover:text-blue-500 transition-colors">
-                <Mail size={18} /> d.neerajkumar480@gmail.com
-              </a>
-              <a href="tel:+917077600849" className="flex items-center gap-2 text-zinc-300 hover:text-blue-500 transition-colors">
-                <Phone size={18} /> +91 7077600849
-              </a>
+            <div className="flex gap-4">
+              <div className="flex flex-col">
+                <span className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Email</span>
+                <a href="mailto:d.neerajkumar480@gmail.com" className="font-semibold text-slate-900 hover:text-blue-600">d.neerajkumar480@gmail.com</a>
+              </div>
+              <div className="w-[1px] bg-slate-200 h-10 mx-4" />
+              <div className="flex flex-col">
+                <span className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Call</span>
+                <a href="tel:+917077600849" className="font-semibold text-slate-900 hover:text-blue-600">+91 7077600849</a>
+              </div>
+            </div>
+          </motion.div>
+          
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9 }} 
+            animate={{ opacity: 1, scale: 1 }} 
+            className="relative hidden md:block"
+          >
+            <div className="absolute inset-0 bg-blue-600 rounded-3xl rotate-3 opacity-10" />
+            <div className="relative bg-white p-8 rounded-3xl border border-slate-200 shadow-2xl">
+              <div className="grid grid-cols-2 gap-4">
+                {[
+                  { label: "Performance", val: "94%", color: "text-emerald-500", icon: <Zap size={16}/> },
+                  { label: "Security", val: "100%", color: "text-blue-500", icon: <ShieldCheck size={16}/> },
+                  { label: "Latency", val: "-40ms", color: "text-orange-500", icon: <TrendingUp size={16}/> },
+                  { label: "Uptime", val: "99.9%", color: "text-blue-600", icon: <Server size={16}/> },
+                ].map((stat, i) => (
+                  <div key={i} className="p-4 bg-slate-50 rounded-xl border border-slate-100">
+                    <div className={`${stat.color} mb-2`}>{stat.icon}</div>
+                    <div className="text-2xl font-bold text-slate-900">{stat.val}</div>
+                    <div className="text-[10px] font-bold uppercase text-slate-400">{stat.label}</div>
+                  </div>
+                ))}
+              </div>
             </div>
           </motion.div>
         </section>
 
-        {/* Experience Section with Scroll Path */}
-        <section id="experience" className="py-40 relative">
-          <h2 className="text-4xl font-bold mb-20 tracking-tight">Professional Journey</h2>
-          
-          <div className="relative max-w-3xl mx-auto">
-            {/* The Vertical Line Path */}
-            <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-[1px] bg-zinc-800 -translate-x-1/2" />
+        {/* Experience - Smooth Scroll Path */}
+        <section id="experience" className="py-24">
+          <div className="mb-16">
+            <h2 className="text-sm font-black uppercase tracking-[0.3em] text-orange-500 mb-4">The Journey</h2>
+            <h3 className="text-4xl font-bold text-slate-900">3.5+ Years of Growth</h3>
+          </div>
 
-            <div className="space-y-24">
-              {experiences.map((exp, index) => (
-                <motion.div 
-                  key={index}
-                  initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  className={`relative flex flex-col md:flex-row items-center ${index % 2 === 0 ? 'md:flex-row-reverse' : ''}`}
-                >
-                  {/* The Dot on the path */}
-                  <div className="absolute left-0 md:left-1/2 w-4 h-4 bg-blue-600 rounded-full -translate-x-1/2 border-4 border-[#020202] z-10" />
-                  
-                  <div className={`w-full md:w-1/2 ${index % 2 === 0 ? 'md:pl-16' : 'md:pr-16 text-left md:text-right'}`}>
-                    <span className="text-blue-500 font-mono text-sm mb-2 block">{exp.year}</span>
-                    <h3 className="text-2xl font-bold mb-1">{exp.role}</h3>
-                    <h4 className="text-zinc-500 font-medium mb-4">{exp.company}</h4>
-                    <p className="text-zinc-400 leading-relaxed bg-zinc-900/50 p-6 rounded-2xl border border-zinc-800 hover:border-blue-500/30 transition-colors">
-                      {exp.desc}
-                    </p>
-                  </div>
-                </motion.div>
-              ))}
+          <div className="space-y-6">
+            {experiences.map((exp, idx) => (
+              <motion.div
+                key={idx}
+                whileHover={{ x: 10 }}
+                className={`p-10 bg-white border border-slate-200 rounded-3xl border-l-8 ${exp.color} shadow-sm hover:shadow-xl transition-all flex flex-col md:flex-row md:items-center justify-between gap-6`}
+              >
+                <div className="max-w-xl">
+                  <span className="text-xs font-bold text-slate-400 mb-2 block">{exp.year}</span>
+                  <h4 className="text-2xl font-bold text-slate-900 mb-1">{exp.role}</h4>
+                  <p className="text-blue-600 font-bold text-sm mb-4">{exp.company}</p>
+                  <p className="text-slate-600 leading-relaxed">{exp.desc}</p>
+                </div>
+                <div className="flex items-center gap-2 text-blue-600 font-bold text-sm cursor-pointer group">
+                  View Case Study <ChevronRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </section>
+
+        {/* Professional CTA */}
+        <section id="contact" className="py-24">
+          <div className="bg-slate-900 rounded-[3rem] p-12 md:p-24 text-center relative overflow-hidden shadow-2xl shadow-blue-200">
+            <div className="absolute top-0 right-0 p-10 opacity-10 text-white">
+              <Database size={200} />
+            </div>
+            <div className="relative z-10">
+              <h2 className="text-4xl md:text-6xl font-bold text-white mb-8 tracking-tight">Let's optimize your <br />data infrastructure.</h2>
+              <div className="flex flex-col md:flex-row justify-center gap-6">
+                <a href="mailto:d.neerajkumar480@gmail.com" className="bg-orange-500 text-white px-10 py-4 rounded-full font-bold hover:bg-orange-600 transition-all shadow-xl shadow-orange-900/20">
+                  Email Me Now
+                </a>
+                <a href="https://linkedin.com" className="bg-white/10 text-white border border-white/20 px-10 py-4 rounded-full font-bold hover:bg-white/20 transition-all flex items-center justify-center gap-2">
+                  <Linkedin size={20} /> LinkedIn
+                </a>
+              </div>
             </div>
           </div>
         </section>
 
-        {/* Final Contact Section */}
-        <section id="contact" className="pb-40 pt-20 border-t border-zinc-900">
-          <div className="bg-gradient-to-br from-zinc-900 to-black p-12 md:p-24 rounded-[3rem] border border-zinc-800 text-center relative overflow-hidden">
-             <div className="relative z-10">
-                <h2 className="text-4xl md:text-6xl font-bold mb-8">Ready to secure your data?</h2>
-                <p className="text-zinc-400 mb-12 max-w-md mx-auto">I'm currently available for full-time opportunities and consulting.</p>
-                <div className="flex flex-col md:flex-row justify-center gap-6">
-                  <a href="mailto:d.neerajkumar480@gmail.com" className="bg-white text-black px-10 py-4 rounded-full font-bold hover:bg-blue-500 hover:text-white transition-all">Hire Neeraj</a>
-                  <div className="flex justify-center gap-4">
-                    <button className="p-4 bg-zinc-800 rounded-full hover:bg-zinc-700 transition-colors"><Linkedin size={20}/></button>
-                    <button className="p-4 bg-zinc-800 rounded-full hover:bg-zinc-700 transition-colors"><Github size={20}/></button>
-                  </div>
-                </div>
-             </div>
-             <Database className="absolute -bottom-20 -left-20 text-white/[0.02] w-96 h-96" />
-          </div>
-        </section>
       </main>
 
-      <footer className="max-w-6xl mx-auto px-8 py-10 border-t border-zinc-900 text-center text-zinc-600 text-xs tracking-widest uppercase">
-        Built with Precision by D Neeraj Kumar — {new Date().getFullYear()}
+      <footer className="max-w-6xl mx-auto px-8 py-12 border-t border-slate-200 flex flex-col md:flex-row justify-between items-center gap-4 text-slate-400 text-[10px] font-bold uppercase tracking-widest">
+        <p>© {new Date().getFullYear()} — D Neeraj Kumar</p>
+        <div className="flex gap-8">
+          <a href="#" className="hover:text-blue-600">PostgreSQL</a>
+          <a href="#" className="hover:text-blue-600">AWS Cloud</a>
+          <a href="#" className="hover:text-blue-600">MongoDB</a>
+        </div>
       </footer>
     </div>
   );

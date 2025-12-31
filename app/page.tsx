@@ -6,100 +6,26 @@ import {
   Github, Linkedin, Mail, Database, Phone, Server, 
   ShieldCheck, Zap, TrendingUp, ChevronRight, 
   Cloud, Download, Cpu, CheckCircle2, 
-  ArrowRight, Box, Globe, Lock, Quote, Star
+  ArrowRight, Box, Globe, Lock, Quote, Star,
+  User, Send, Code, Layers, MousePointer2
 } from 'lucide-react';
 
-// --- ANIMATED SECTION WRAPPER ---
+// --- SEO & META (Put this in your layout.tsx or top of page) ---
+// Title: D Neeraj Kumar | Senior DBA & DevOps Specialist
+// Description: Expert Database Administrator and DevOps Engineer with 3.5+ years of experience in AWS, PostgreSQL, and Automation.
+
 const FadeInSection = ({ children, delay = 0 }: { children: React.ReactNode, delay?: number }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: false, margin: "-100px" });
-  
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 50, scale: 0.95 }}
-      animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 50, scale: 0.95 }}
-      transition={{ duration: 0.8, delay, ease: [0.16, 1, 0.3, 1] }}
-      className="w-full"
+      initial={{ opacity: 0, y: 30 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+      transition={{ duration: 0.7, delay }}
     >
       {children}
     </motion.div>
-  );
-};
-
-// --- SKILLS RADAR COMPONENT ---
-const SkillsRadar = () => {
-  const skills = [
-    { name: "DBA", value: 100, x: 200, y: 50 },
-    { name: "AWS", value: 90, x: 350, y: 150 },
-    { name: "DevOps", value: 85, x: 300, y: 320 },
-    { name: "Security", value: 95, x: 100, y: 320 },
-    { name: "Linux", value: 80, x: 50, y: 150 },
-  ];
-
-  return (
-    <div className="relative w-full max-w-md mx-auto aspect-square flex items-center justify-center">
-      <svg viewBox="0 0 400 400" className="w-full h-full overflow-visible">
-        {/* Background Hexagons */}
-        {[0.2, 0.4, 0.6, 0.8, 1].map((scale, i) => (
-          <circle key={i} cx="200" cy="200" r={150 * scale} fill="none" stroke="#e2e8f0" strokeWidth="1" />
-        ))}
-        {/* Radar Path */}
-        <motion.polygon
-          initial={{ opacity: 0, scale: 0 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          points={skills.map(s => `${s.x},${s.y}`).join(' ')}
-          fill="rgba(37, 99, 235, 0.1)"
-          stroke="#2563eb"
-          strokeWidth="3"
-        />
-        {/* Labels */}
-        {skills.map((s, i) => (
-          <text key={i} x={s.x} y={s.y - 15} textAnchor="middle" className="text-[12px] font-black fill-slate-400 uppercase tracking-widest">
-            {s.name}
-          </text>
-        ))}
-      </svg>
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <Cpu className="text-blue-200 w-12 h-12" />
-      </div>
-    </div>
-  );
-};
-
-// --- TESTIMONIAL CAROUSEL ---
-const TestimonialCarousel = () => {
-  const [index, setIndex] = useState(0);
-  const testimonials = [
-    { text: "Neeraj's ability to optimize our PostgreSQL cluster saved us thousands in AWS costs monthly.", author: "CTO @ Tech Solutions", stars: 5 },
-    { text: "A rare DBA who understands DevOps. His CI/CD pipelines for database migrations are flawless.", author: "Lead Architect @ DataSystems", stars: 5 },
-    { text: "Reliability is Neeraj's middle name. Our uptime went from 99.1% to 99.99% under his watch.", author: "Manager @ CloudWare", stars: 5 }
-  ];
-
-  useEffect(() => {
-    const timer = setInterval(() => setIndex((prev) => (prev + 1) % testimonials.length), 5000);
-    return () => clearInterval(timer);
-  }, []);
-
-  return (
-    <div className="bg-white border border-slate-200 rounded-[3rem] p-12 shadow-sm relative overflow-hidden h-[300px] flex items-center">
-      <Quote className="absolute top-8 left-8 text-blue-50 w-24 h-24 -z-0" />
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={index}
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: -20 }}
-          className="relative z-10 w-full"
-        >
-          <div className="flex gap-1 mb-6">
-            {[...Array(testimonials[index].stars)].map((_, i) => <Star key={i} size={16} className="fill-orange-400 text-orange-400" />)}
-          </div>
-          <p className="text-2xl font-medium text-slate-700 italic mb-6 leading-relaxed">"{testimonials[index].text}"</p>
-          <p className="text-sm font-black text-blue-600 uppercase tracking-[0.2em]">— {testimonials[index].author}</p>
-        </motion.div>
-      </AnimatePresence>
-    </div>
   );
 };
 
@@ -108,132 +34,192 @@ export default function NeerajPortfolio() {
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
 
-  const handleDownload = () => {
-    confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 }, colors: ['#2563eb', '#f97316', '#10b981'] });
-  };
-
-  const experiences = [
-    { 
-      role: "Senior DBA", company: "Tech Solutions", date: "2023 - Present", 
-      details: ["Managed 50TB+ AWS RDS instances", "99.99% Uptime achievement", "Terraform for DB automation"],
-      tags: ["PostgreSQL", "AWS Aurora"]
-    },
-    { 
-      role: "Database Engineer", company: "DataSystems Ltd", date: "2021 - 2023", 
-      details: ["Query optimization reducing load by 40%", "MongoDB Sharding", "DR Strategy Implementation"],
-      tags: ["MySQL", "MongoDB"]
-    }
+  const skills = [
+    { name: "AWS (RDS/EC2/S3)", level: 95, icon: <Cloud size={16}/> },
+    { name: "PostgreSQL/MySQL", level: 98, icon: <Database size={16}/> },
+    { name: "Terraform/IaC", level: 85, icon: <Layers size={16}/> },
+    { name: "Docker/Kubernetes", level: 80, icon: <Box size={16}/> },
+    { name: "Security & IAM", level: 90, icon: <Lock size={16}/> },
   ];
+
+  const projects = [
+    { title: "Cloud Migration", desc: "12TB On-prem to AWS Aurora migration with zero data loss.", tech: "AWS, Python", link: "#" },
+    { title: "Query Optimizer", desc: "Custom engine reducing SQL execution time by 60%.", tech: "PostgreSQL, Go", link: "#" },
+    { title: "Auto-DR Script", desc: "Automated Disaster Recovery for multi-region failover.", tech: "Bash, Terraform", link: "#" },
+  ];
+
+  const handleDownload = () => {
+    confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 }, colors: ['#2563eb', '#f97316'] });
+    // window.open('/resume.pdf', '_blank');
+  };
 
   return (
     <div className="min-h-screen bg-[#fcfdfe] text-slate-900 font-sans selection:bg-blue-100 selection:text-blue-900 overflow-x-hidden relative">
       <motion.div className="fixed top-0 left-0 right-0 h-1.5 bg-blue-600 z-[100] origin-left" style={{ scaleX }} />
 
-      <nav className="sticky top-0 z-50 bg-white/70 backdrop-blur-xl border-b border-slate-100 px-8 py-5 flex justify-between items-center">
-        <span className="font-black text-2xl tracking-tighter text-blue-600 uppercase">DNK<span className="text-orange-500">.</span></span>
-        <button onClick={handleDownload} className="flex items-center gap-2 bg-blue-600 text-white px-6 py-2.5 rounded-full text-xs font-bold hover:shadow-lg transition-all shadow-blue-200">
-          <Download size={14} /> Download CV
-        </button>
+      {/* 2. FIXED NAVIGATION BAR */}
+      <nav className="fixed top-0 left-0 right-0 z-[90] bg-white/80 backdrop-blur-lg border-b border-slate-100 px-8 py-4">
+        <div className="max-w-6xl mx-auto flex justify-between items-center">
+          <span className="font-black text-xl tracking-tighter text-blue-600">DNK.</span>
+          <div className="hidden md:flex gap-8 text-[10px] font-black uppercase tracking-widest text-slate-400">
+            <a href="#home" className="hover:text-blue-600 transition-colors">Home</a>
+            <a href="#skills" className="hover:text-blue-600 transition-colors">Skills</a>
+            <a href="#experience" className="hover:text-blue-600 transition-colors">Experience</a>
+            <a href="#projects" className="hover:text-blue-600 transition-colors">Projects</a>
+            <a href="#contact" className="hover:text-blue-600 transition-colors">Contact</a>
+          </div>
+          <button onClick={handleDownload} className="bg-slate-900 text-white px-5 py-2 rounded-full text-[10px] font-bold hover:bg-blue-600 transition-all uppercase tracking-widest">CV</button>
+        </div>
       </nav>
 
-      <main className="max-w-6xl mx-auto px-8 relative z-10">
-        {/* HERO SECTION */}
-        <section className="py-24 md:py-48 text-center">
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1 }}>
-            <h1 className="text-7xl md:text-[10rem] font-black tracking-tighter text-slate-900 leading-none mb-10">
-              D NEERAJ <br /><span className="text-blue-600 uppercase">KUMAR</span>
+      <main className="max-w-6xl mx-auto px-8 relative z-10 pt-20">
+        
+        {/* 1. HERO SECTION WITH VISUALS */}
+        <section id="home" className="py-24 md:py-40 grid md:grid-cols-2 gap-12 items-center text-left">
+          <motion.div initial={{ opacity: 0, x: -50 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }}>
+            <div className="inline-flex items-center gap-2 px-3 py-1 bg-blue-50 text-blue-600 rounded-full text-[10px] font-bold mb-6 tracking-widest uppercase border border-blue-100">
+              <span className="w-2 h-2 rounded-full bg-blue-600 animate-pulse" /> Senior DBA & DevOps Specialist
+            </div>
+            <h1 className="text-6xl md:text-8xl font-black tracking-tighter text-slate-900 leading-[0.85] mb-8">
+              D NEERAJ <br /><span className="text-blue-600">KUMAR</span>
             </h1>
-            <p className="text-2xl text-slate-500 max-w-2xl mx-auto font-medium italic">Empowering data systems with 3.5+ years of DBA & DevOps excellence.</p>
+            <p className="text-xl text-slate-500 max-w-lg mb-10 leading-relaxed font-medium italic">
+              "Ensuring 99.99% uptime and extreme performance through precision data engineering."
+            </p>
+            <div className="flex gap-4">
+              <button onClick={() => document.getElementById('contact')?.scrollIntoView({behavior:'smooth'})} className="bg-blue-600 text-white px-8 py-4 rounded-2xl font-bold flex items-center gap-2 hover:scale-105 transition-transform shadow-xl shadow-blue-200">
+                <Mail size={18} /> Contact Me
+              </button>
+              <a href="tel:+917077600849" className="bg-white border border-slate-200 text-slate-900 px-8 py-4 rounded-2xl font-bold flex items-center gap-2 hover:bg-slate-50 transition-colors">
+                <Phone size={18} /> Call
+              </a>
+            </div>
+          </motion.div>
+          <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} className="relative flex justify-center">
+            {/* Visual placeholder for Avatar/DB Concept */}
+            <div className="w-80 h-80 bg-gradient-to-br from-blue-600 to-indigo-700 rounded-[3rem] shadow-2xl rotate-3 relative overflow-hidden flex items-center justify-center">
+               <Database size={120} className="text-white opacity-20 absolute -bottom-10 -right-10" />
+               <Cpu size={140} className="text-white" />
+            </div>
           </motion.div>
         </section>
 
-        {/* RADAR & SKILLS SECTION */}
-        <section className="py-20 border-t border-slate-100">
+        {/* 3. SKILLS VISUALIZATION (Visual bars) */}
+        <section id="skills" className="py-24 border-t border-slate-100">
           <div className="grid md:grid-cols-2 gap-20 items-center">
-            <FadeInSection>
-              <h2 className="text-xs font-black uppercase tracking-[0.4em] text-orange-500 mb-6">Efficiency Profile</h2>
-              <h3 className="text-5xl font-black mb-8 leading-tight">Mastery across the <br /><span className="text-blue-600 underline decoration-slate-200 underline-offset-8">Data Stack.</span></h3>
-              <p className="text-slate-500 text-lg mb-10">From raw SQL optimization to cloud-native Kubernetes orchestration, I bridge the gap between code and infrastructure.</p>
-              <div className="flex flex-wrap gap-4">
-                 {["PostgreSQL", "AWS RDS", "Docker", "Terraform", "Prometheus"].map(s => (
-                   <span key={s} className="px-4 py-2 bg-white border border-slate-200 rounded-xl text-xs font-bold text-slate-600 shadow-sm">{s}</span>
-                 ))}
+            <div>
+              <h2 className="text-xs font-black uppercase tracking-[0.4em] text-orange-500 mb-6 font-mono">Efficiency Profile</h2>
+              <h3 className="text-5xl font-black mb-10 tracking-tighter">Technical Mastery</h3>
+              <div className="space-y-8">
+                {skills.map((s, i) => (
+                  <div key={i}>
+                    <div className="flex justify-between mb-2 text-xs font-black uppercase tracking-widest">
+                      <span className="flex items-center gap-2">{s.icon} {s.name}</span>
+                      <span className="text-blue-600">{s.level}%</span>
+                    </div>
+                    <div className="h-2 bg-slate-100 rounded-full overflow-hidden border border-slate-200/50">
+                      <motion.div 
+                        initial={{ width: 0 }} 
+                        whileInView={{ width: `${s.level}%` }} 
+                        transition={{ duration: 1.5, ease: "easeOut" }}
+                        className="h-full bg-blue-600"
+                      />
+                    </div>
+                  </div>
+                ))}
               </div>
-            </FadeInSection>
-            <FadeInSection delay={0.2}>
-              <SkillsRadar />
-            </FadeInSection>
+            </div>
+            <div className="bg-slate-900 p-10 rounded-[3rem] text-white">
+              <h4 className="text-xl font-bold mb-6 flex items-center gap-2"><Zap className="text-orange-500"/> Core Competencies</h4>
+              <ul className="space-y-4 opacity-70 text-sm">
+                <li className="flex gap-3"><CheckCircle2 size={16} className="text-emerald-500" /> Multi-Region Failover Strategies</li>
+                <li className="flex gap-3"><CheckCircle2 size={16} className="text-emerald-500" /> Infrastructure as Code (Terraform)</li>
+                <li className="flex gap-3"><CheckCircle2 size={16} className="text-emerald-500" /> Automated PITR Backups</li>
+                <li className="flex gap-3"><CheckCircle2 size={16} className="text-emerald-500" /> VPC & Network Isolation</li>
+              </ul>
+            </div>
           </div>
         </section>
 
-        {/* EXPERIENCE SECTION */}
-        <section className="py-20">
-          <FadeInSection>
-            <h2 className="text-5xl font-black mb-20 tracking-tight text-center">Work Experience</h2>
-          </FadeInSection>
-          <div className="space-y-8">
-            {experiences.map((exp, idx) => (
-              <FadeInSection key={idx} delay={idx * 0.1}>
-                <div 
-                  className={`bg-white border rounded-[3rem] transition-all duration-500 ${expandedIdx === idx ? 'border-blue-500 shadow-2xl p-10' : 'border-slate-200 p-8 shadow-sm hover:border-blue-300'}`}
-                  onClick={() => setExpandedIdx(expandedIdx === idx ? null : idx)}
-                >
-                  <div className="flex flex-col md:flex-row justify-between items-center gap-6 cursor-pointer">
-                    <div className="flex gap-6 items-center">
-                      <div className={`p-4 rounded-3xl ${expandedIdx === idx ? 'bg-blue-600 text-white shadow-lg' : 'bg-slate-100 text-blue-600'}`}><Server size={30} /></div>
-                      <div>
-                        <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{exp.date}</span>
-                        <h4 className="text-3xl font-bold">{exp.role}</h4>
-                        <p className="text-blue-600 font-bold text-sm uppercase">{exp.company}</p>
-                      </div>
+        {/* 4. INTERACTIVE TIMELINE EXPERIENCE */}
+        <section id="experience" className="py-24 border-t border-slate-100">
+          <h2 className="text-4xl font-black mb-20 tracking-tighter">Career Timeline</h2>
+          <div className="relative border-l-2 border-slate-100 ml-4 md:ml-0 space-y-16">
+            {[
+              { year: "2023 - Present", role: "Senior DBA", co: "Tech Solutions", d: "Leading cloud data architecture and orchestration." },
+              { year: "2021 - 2023", role: "DB Engineer", co: "DataSystems Ltd", d: "Optimized distributed systems for high-traffic apps." },
+              { year: "2020 - 2021", role: "Associate DBA", co: "CloudWare Inc", d: "Managed relational database security and migrations." },
+            ].map((exp, i) => (
+              <FadeInSection key={i} delay={i * 0.1}>
+                <div className="relative pl-12">
+                  <div className="absolute -left-[9px] top-2 w-4 h-4 rounded-full bg-blue-600 border-4 border-white" />
+                  <div className="grid md:grid-cols-4 gap-4">
+                    <div className="text-xs font-black text-slate-400 uppercase tracking-widest">{exp.year}</div>
+                    <div className="md:col-span-3">
+                      <h4 className="text-2xl font-bold text-slate-900">{exp.role}</h4>
+                      <p className="text-blue-600 font-bold uppercase text-[10px] tracking-[0.2em] mb-4">{exp.co}</p>
+                      <p className="text-slate-500 leading-relaxed text-sm">{exp.d}</p>
                     </div>
-                    <ChevronRight className={`transition-transform duration-500 ${expandedIdx === idx ? 'rotate-90 text-blue-600' : 'text-slate-300'}`} size={32} />
                   </div>
-                  <AnimatePresence>
-                    {expandedIdx === idx && (
-                      <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="pt-8 mt-8 border-t border-slate-100">
-                        <ul className="space-y-4">
-                          {exp.details.map((d, i) => (
-                            <li key={i} className="flex gap-3 text-slate-600 items-start"><CheckCircle2 size={18} className="text-emerald-500 shrink-0 mt-1" />{d}</li>
-                          ))}
-                        </ul>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
                 </div>
               </FadeInSection>
             ))}
           </div>
         </section>
 
-        {/* TESTIMONIAL SECTION */}
-        <section className="py-20">
-          <FadeInSection>
-            <h2 className="text-xs font-black uppercase tracking-[0.4em] text-orange-500 mb-10 text-center">Testimonials</h2>
-            <TestimonialCarousel />
-          </FadeInSection>
+        {/* 5. PROJECTS SECTION (Bento Grid) */}
+        <section id="projects" className="py-24 border-t border-slate-100">
+           <div className="flex justify-between items-end mb-16">
+              <h2 className="text-4xl font-black tracking-tighter">Selected Projects</h2>
+              <a href="https://github.com" className="text-[10px] font-black uppercase text-blue-600 border-b-2 border-blue-600 pb-1">View All GitHub</a>
+           </div>
+           <div className="grid md:grid-cols-3 gap-8">
+              {projects.map((p, i) => (
+                <div key={i} className="group bg-white border border-slate-200 p-8 rounded-[2.5rem] hover:shadow-2xl hover:-translate-y-2 transition-all">
+                   <Code className="text-blue-600 mb-6 group-hover:rotate-12 transition-transform" />
+                   <h4 className="text-xl font-bold mb-4">{p.title}</h4>
+                   <p className="text-sm text-slate-500 mb-8 leading-relaxed">{p.desc}</p>
+                   <div className="flex justify-between items-center">
+                      <span className="text-[10px] font-bold text-slate-400 uppercase">{p.tech}</span>
+                      <ArrowRight size={18} className="text-slate-300 group-hover:text-blue-600" />
+                   </div>
+                </div>
+              ))}
+           </div>
         </section>
 
-        {/* FOOTER CONTACT */}
-        <FadeInSection>
-          <section id="contact" className="py-24 mb-20">
-            <div className="bg-slate-900 rounded-[4rem] p-12 md:p-24 text-center text-white relative overflow-hidden">
-              <h2 className="text-5xl md:text-8xl font-black mb-10 tracking-tighter uppercase leading-none">Let's build <br />Future.</h2>
-              <div className="flex flex-col md:flex-row justify-center gap-6 relative z-10">
-                <a href="mailto:d.neerajkumar480@gmail.com" className="bg-blue-600 text-white px-12 py-5 rounded-3xl font-black uppercase text-sm shadow-xl shadow-blue-900/40">Email Neeraj</a>
-                <a href="tel:+917077600849" className="bg-white text-black px-12 py-5 rounded-3xl font-black uppercase text-sm hover:bg-orange-500 hover:text-white transition-all">+91 7077600849</a>
-              </div>
-              <Database className="absolute -bottom-10 -right-10 w-96 h-96 text-white/[0.03] rotate-12" />
-            </div>
-          </section>
-        </FadeInSection>
+        {/* 7. CONTACT FORM */}
+        <section id="contact" className="py-24">
+          <div className="grid md:grid-cols-2 gap-16 bg-white border border-slate-200 p-12 md:p-24 rounded-[4rem] shadow-xl">
+             <div>
+                <h2 className="text-4xl font-black mb-8 leading-none">Get in touch.</h2>
+                <p className="text-slate-500 mb-10 italic">"Always open to discussing high-availability architectures and database optimization."</p>
+                <div className="space-y-6">
+                   <a href="mailto:d.neerajkumar480@gmail.com" className="flex items-center gap-4 text-blue-600 font-bold"><Mail size={20}/> d.neerajkumar480@gmail.com</a>
+                   <a href="tel:+917077600849" className="flex items-center gap-4 text-slate-900 font-bold"><Phone size={20}/> +91 7077600849</a>
+                </div>
+             </div>
+             <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
+                <input type="text" placeholder="Full Name" className="w-full p-4 bg-slate-50 border border-slate-100 rounded-2xl outline-none focus:border-blue-500 transition-colors" />
+                <input type="email" placeholder="Email Address" className="w-full p-4 bg-slate-50 border border-slate-100 rounded-2xl outline-none focus:border-blue-500 transition-colors" />
+                <textarea rows={4} placeholder="Your Message" className="w-full p-4 bg-slate-50 border border-slate-100 rounded-2xl outline-none focus:border-blue-500 transition-colors" />
+                <button className="w-full bg-blue-600 text-white py-4 rounded-2xl font-black uppercase tracking-widest flex items-center justify-center gap-3 hover:bg-slate-900 transition-colors">
+                  <Send size={18} /> Send Message
+                </button>
+             </form>
+          </div>
+        </section>
       </main>
 
-      <footer className="max-w-6xl mx-auto px-8 py-12 border-t border-slate-100 flex justify-between items-center text-[10px] font-black uppercase tracking-[0.3em] text-slate-400">
-        <p>D Neeraj Kumar — {new Date().getFullYear()}</p>
-        <div className="flex gap-8">
-          <a href="#" className="hover:text-blue-600">LinkedIn</a>
-          <a href="#" className="hover:text-blue-600">GitHub</a>
+      {/* 8. STICKY FOOTER WITH SOCIAL ICONS */}
+      <footer className="sticky bottom-0 z-[100] bg-white/90 backdrop-blur-md border-t border-slate-100 py-6 px-8">
+        <div className="max-w-6xl mx-auto flex justify-between items-center">
+          <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">© 2025 D Neeraj Kumar</p>
+          <div className="flex gap-6 items-center">
+             <a href="https://linkedin.com" className="text-slate-400 hover:text-blue-600 transition-colors"><Linkedin size={20} /></a>
+             <a href="https://github.com" className="text-slate-400 hover:text-slate-900 transition-colors"><Github size={20} /></a>
+             <a href="mailto:d.neerajkumar480@gmail.com" className="text-slate-400 hover:text-orange-500 transition-colors"><Mail size={20} /></a>
+          </div>
         </div>
       </footer>
     </div>

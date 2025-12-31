@@ -79,7 +79,7 @@ const MonitoringDashboard = () => {
              <p className="text-xs font-medium text-slate-500">Infrastructure visualized with **AWS CloudWatch** & **Grafana**</p>
           </div>
           <button className="text-xs font-bold text-blue-600 flex items-center gap-2 hover:gap-3 transition-all">
-            VIEW FULL ARCHITECTURE <ArrowRight size={14} />
+            VIEW FULL ARCHITECTURE <ArrowUpRight size={14} />
           </button>
         </div>
       </div>

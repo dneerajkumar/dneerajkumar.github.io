@@ -65,6 +65,17 @@ export default function NeerajFinalPortfolio() {
 
   const handleDownload = () => {
     confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 }, colors: ['#2563eb', '#f97316', '#10b981'] });
+
+    const fileUrl = '/D_Neeraj_Kumar.pdf'; 
+  const fileName = 'D Neeraj_DBA.pdf'; // The name the user will see when it downloads
+
+  const link = document.createElement('a');
+  link.href = fileUrl;
+  link.setAttribute('download', fileName);
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+    
   };
 
   const experiences = [

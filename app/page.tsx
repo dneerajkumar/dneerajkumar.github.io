@@ -69,23 +69,24 @@ export default function NeerajFinalPortfolio() {
 
   const experiences = [
     { 
-      role: "Senior Database Administrator", company: "Tech Solutions", date: "2023 - Present", 
-      details: ["Led design and deployment of highly available PostgreSQL clusters on AWS RDS.", "Achieved 99.99% database uptime through proactive monitoring and automated failovers.", "Implemented Infrastructure as Code (Terraform) for database provisioning and scaling, reducing deployment time by 80%."],
-      stack: ["PostgreSQL", "AWS Aurora", "Terraform", "Grafana", "Prometheus"]
+      role: "Database Administrator", company: "PayU Payments", date: "2025 - Present", 
+      details: ["Led design and deployment of highly available PostgreSQL and MySQL clusters on AWS Aurora.", "Achieved 99.99% database uptime through proactive monitoring and automated failovers.", "Implemented Infrastructure as Code (Terraform) for database provisioning and scaling, reducing deployment time by 80%."],
+      stack: ["PostgreSQL", "MySQL", "AWS Aurora", "Terraform", "Grafana", "Prometheus"]
     },
     { 
-      role: "Database Engineer", company: "DataSystems Ltd", date: "2021 - 2023", 
+      role: "Database Engineer", company: "Highradius Pvt. Ltd.", date: "2023 - 2025", 
       details: ["Optimized complex SQL queries, reducing average load times by 40% for mission-critical applications.", "Managed large-scale MongoDB sharded clusters, ensuring seamless data distribution and performance.", "Designed and implemented robust Disaster Recovery strategies, including Point-in-Time Recovery (PITR) for all production databases."],
       stack: ["MySQL", "MongoDB", "Python", "Docker", "Kubernetes"]
     },
     { 
-      role: "Associate DBA", company: "CloudWare Inc", date: "2020 - 2021", 
+      role: "Associate Engineer", company: "Highradius Pvt. Ltd.", date: "2022 - 2023", 
       details: ["Performed schema migrations and database upgrades with zero downtime.", "Enhanced database security by implementing IAM policies and VPC hardening.", "Automated daily backup and restoration procedures, ensuring data integrity and availability."],
       stack: ["MySQL", "Linux Admin", "AWS IAM", "Bash Scripting"]
     }
   ];
 
   const skills = [
+    { name: "MySQL", level: 95, icon: <Database size={24}/>, color: "blue" },
     { name: "PostgreSQL", level: 95, icon: <Database size={24}/>, color: "blue" },
     { name: "AWS Services", level: 90, icon: <Cloud size={24}/>, color: "orange" },
     { name: "Terraform", level: 85, icon: <Layers size={24}/>, color: "purple" },
@@ -98,7 +99,7 @@ export default function NeerajFinalPortfolio() {
     {
       title: "Cloud Migration Strategy",
       shortDesc: "Seamless migration of 12TB legacy SQL to AWS Aurora.",
-      techStack: ["AWS RDS", "PostgreSQL", "Python", "Terraform"],
+      techStack: ["AWS Aurora", "MySQL", "Python", "Terraform" ,"AWS DMS"],
       image: 'https://via.placeholder.com/600x400/2563eb/ffffff?text=AWS+Migration', // Placeholder image
       details: {
         problem: "Monolithic on-premise SQL database with scaling limitations and high maintenance cost.",
@@ -109,7 +110,7 @@ export default function NeerajFinalPortfolio() {
     {
       title: "Automated DR Solution",
       shortDesc: "Cross-region disaster recovery for mission-critical data.",
-      techStack: ["AWS RDS", "Terraform", "Lambda", "Python"],
+      techStack: ["AWS Global Database", "Terraform", "Lambda", "Python"],
       image: 'https://via.placeholder.com/600x400/f97316/ffffff?text=DR+Automation',
       details: {
         problem: "Manual DR process, leading to high RTO and potential for human error.",

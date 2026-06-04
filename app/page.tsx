@@ -183,8 +183,8 @@ export default function NeerajFinalPortfolio() {
               D NEERAJ <br /><span className="text-blue-600">KUMAR</span>
             </h1>
             <div className="flex flex-wrap gap-4">
-               <span className="px-4 py-2 bg-blue-50 text-blue-600 rounded-xl font-bold text-xs border border-blue-100 uppercase tracking-widest">Senior DBA Specialist</span>
-               <span className="px-4 py-2 bg-orange-50 text-orange-600 rounded-xl font-bold text-xs border border-orange-100 uppercase tracking-widest">DevOps Engineer</span>
+               <span className="px-4 py-2 bg-blue-50 text-blue-600 rounded-xl font-bold text-xs border border-blue-100 uppercase tracking-widest">Database Reliability Engineer</span>
+               <span className="px-4 py-2 bg-orange-50 text-orange-600 rounded-xl font-bold text-xs border border-orange-100 uppercase tracking-widest">Automation Specialist</span>
             </div>
           </motion.div>
         </section>
@@ -430,8 +430,8 @@ export default function NeerajFinalPortfolio() {
       <footer className="max-w-6xl mx-auto px-8 py-12 border-t border-slate-100 flex justify-between items-center text-[10px] font-black uppercase tracking-[0.3em] text-slate-400">
         <p>D Neeraj Kumar © {new Date().getFullYear()}</p>
         <div className="flex gap-8">
-           <a href="#" className="hover:text-blue-600 flex items-center gap-2"><Linkedin size={14}/> LinkedIn</a>
-           <a href="#" className="hover:text-blue-600 flex items-center gap-2"><Github size={14}/> GitHub</a>
+           <a href="https://www.linkedin.com/in/dneerajkumar/" target="_blank" className="hover:text-blue-600 flex items-center gap-2"><Linkedin size={14}/> LinkedIn</a>
+           <a href="https://github.com/dneerajkumar/" target="_blank" className="hover:text-blue-600 flex items-center gap-2"><Github size={14}/> GitHub</a>
         </div>
       </footer>
     </div>
